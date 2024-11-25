@@ -1,0 +1,20 @@
+// ------------------------------- first level
+// @import "general/normalize";
+// ------------------------------- second level
+@import "general/fonts";
+@import "general/mixins";
+@import "general/vars";
+@import "general/loader";
+@import "general/swiper";
+@import "general/animations";
+@import "general/npm";
+
+// ------------------------------- third level
+@import "general/global";
+@import "general/custom-icon";
+@import "general/components";
+@import "general/blocks";
+
+
+
+

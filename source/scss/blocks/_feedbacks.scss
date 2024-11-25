@@ -1,0 +1,60 @@
+.feedbacks {
+    padding: clamp(50px, 11.719vw, 120px) 0;
+
+    &__wrapp {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+
+    &__slider {
+        width: 100%;
+        overflow: hidden;
+        margin-top: -10px;
+        padding-top: 10px;
+
+        &-controls {
+            margin: 30px auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        &-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: clamp(40px, 7.813vw, 80px);
+            height: clamp(40px, 7.813vw, 80px);
+            cursor: pointer;
+
+            svg {
+                fill: transparent;
+                stroke: currentColor;
+            }
+        }
+
+        &-pagination {
+            width: fit-content !important;
+            display: flex;
+            gap: clamp(5px, 0.977vw, 10px);
+
+            .swiper-pagination-bullet {
+                width: clamp(10px, 1.953vw, 20px);
+                height: clamp(10px, 1.953vw, 20px);
+                opacity: 1;
+                background: rgba(0, 0, 0, 0.2);
+            }
+          
+            .swiper-pagination-bullet-active {
+                background: rgba(var(--cl-b),1.0);
+            }
+        }
+    }
+
+    &__slide {
+        height: initial;
+    }
+}

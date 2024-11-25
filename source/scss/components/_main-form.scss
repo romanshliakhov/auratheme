@@ -1,0 +1,192 @@
+.main-form {
+	display: flex;
+	flex-direction: column;
+
+	&__title {
+		margin-bottom: 56px;
+		font-family: var(--font-family-second);
+		font-size: 42px;
+		line-height: 105%;
+		font-weight: 500;
+		color: rgba(var(--cl-a),1.0);
+	}
+
+	&__descr {
+		margin-bottom: 30px;
+		font-family: var(--font-family-second);
+		font-size: 24px;
+		line-height: 105%;
+		font-weight: 500;
+		color: rgba(var(--cl-a),1.0);
+	}
+
+	&__labels {
+		margin-bottom: 30px;
+		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 30px;
+
+		@include small-tablet {
+			display: flex;
+			flex-direction: column;
+        }
+
+		label {
+			position: relative;
+			width: 100%;
+	
+			span {
+				display: flex;
+				width: 100%;
+			}
+
+			&:last-child {
+				grid-column: span 2;
+			}
+		}
+
+		input, textarea {
+			width: 100%;
+			padding: 15px 20px;
+			background-color: rgba(var(--bg-a),1.0);
+	
+			color:  rgba(var(--cl-a),1.0);
+			font-family: var(--font-family-second);
+			font-size: clamp(14px, 1.111vw, 16px);
+			line-height: 140%;
+			font-weight: 400;
+			border: 1px solid rgba(var(--cl-c),1.0);
+			border-radius: 10px;
+			transition: all .4s;
+	
+			&::placeholder {
+				color: rgba(var(--cl-c),1.0);
+			}
+	
+			&.focus-visible {
+				border: 1px solid rgba(var(--cl-c),1.0);
+	
+				&::placeholder {
+					color: rgba(var(--cl-c),1.0);
+				}
+			}
+		}
+	
+		textarea {
+			height: 108px;
+			overflow-y: auto;
+	
+			&::-webkit-scrollbar {
+				width: Max(8px, 8rem);
+				cursor: pointer;
+			
+				@include small-tablet {
+				  display: none;
+				}
+			  }
+			
+			&::-webkit-scrollbar-thumb {
+				background-color: var(--scrollbar-thumb);
+				cursor: pointer;
+				transition: all 0.2s;
+			}
+			
+			&::-webkit-scrollbar-track {
+				background-color: var(--scrollbar-track);
+			}
+			
+			&::-webkit-scrollbar-button {
+				display: none;
+				background-color: transparent;
+				box-shadow: none;
+			}
+		}
+	}
+
+	&__btn {
+		width: fit-content;
+		position: relative;
+
+		@include small-tablet {
+			width: 100%;
+        }
+
+		input {
+			padding: 13px 35px;
+			border: 1px solid rgba(var(--cl-a),1.0);
+			border-radius: 300px;
+		
+			font-family: var(--font-family-second);
+			font-size: 16px;
+			line-height: 100%;
+			font-weight: 400;
+			text-transform: uppercase;
+			color: rgba(var(--cl-a),1.0);
+			z-index: 1;
+			transition: all .4s;
+			cursor: pointer;
+
+			&:hover {
+				transform: translateY(-0.325em);
+			}
+		}
+	}
+
+	.wpcf7 {
+		max-width: 886px;
+		position: relative;
+		z-index: 1;
+
+		&-spinner {
+			display: none;
+		}
+
+		&-not-valid {
+			border: 1px solid rgba(var(--cl-e),1.0);
+
+			&::placeholder {
+				color: rgba(var(--cl-e),1.0);
+			}
+		}
+
+		&-not-valid-tip {
+			bottom: 2px;
+			left: 20px;
+			position: absolute;
+			opacity: 0;
+			transition: opacity .2s;
+			transition-delay: .2s;
+		}
+
+		&-response {
+			&-output {
+				display: none;
+				position: absolute;
+			}
+		}
+	}
+}
+
+.form-section__inner-wrapp .loader {
+	pointer-events: none;
+
+	&.loaded {
+		pointer-events: initial;
+
+		.wpcf7-not-valid-tip {
+			opacity: 1;
+		}
+	}
+
+	&:before {
+		z-index: 10;
+		inset: -20px;
+		background-color: transparent;
+		backdrop-filter: blur(3px);
+	}
+
+	&:after {
+		z-index: 15;
+	}
+}

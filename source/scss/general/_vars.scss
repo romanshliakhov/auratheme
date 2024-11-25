@@ -1,0 +1,54 @@
+// --------------- hex to rgba mixin ---------------
+@function HexToRGB($hex) {
+	@return red($hex), green($hex), blue($hex);
+}
+
+:root {
+	// --------------- default global variable ---------------
+	--frame-width: 1920;
+	--rem-function: calc(100vw / var(--frame-width));
+	--body-font-size: 16px;
+	--content-width: 1410px;
+	--container-offset: clamp(15px, 4.167vw, 80px);
+
+	--container-width: calc(var(--content-width) + (var(--container-offset) * 2));
+
+	@include tablet {
+		--header-height: 81px !important;
+	}
+
+	--overlay-bg: rgba(0, 0, 0, 0.5);
+
+	// --------------- default slect variable ---------------
+	--select-inner-bg: #404040;
+	--select-inner-border: #FDFDFD;
+	--select-focus-border: #FDFDFD;
+
+	// --------------- default font-family variable ---------------
+	--font-family-primary: "Raleway", sans-serif; // var(--font-family-primary);
+	--font-family-second: "MPLUS1p", sans-serif; // var(--font-family-second);
+
+	// --------------- default color variable ---------------
+	--cl-a: #{HexToRGB(#ffffff)}; // rgba(var(--cl-a),1.0);
+	--cl-b: #{HexToRGB(#060606)}; // rgba(var(--cl-b),1.0);
+	--cl-c: #{HexToRGB(#bcbcbc)}; // rgba(var(--cl-c),1.0);
+	--cl-d: #{HexToRGB(#60615f)}; // rgba(var(--cl-d),1.0);
+	--cl-e: #{HexToRGB(#cb1f33)}; // rgba(var(--cl-e),1.0);
+	--cl-f: #{HexToRGB(#045144)}; // rgba(var(--cl-f),1.0);
+
+	// -------------
+	--animation-offset: 10%;
+
+	@include small-tablet {
+		--animation-offset: 2%;
+	}
+
+	// --------------- default scroll variable ---------------
+	--scrollbar-thumb: #fff;
+	--scrollbar-track: transparent;
+	--scrollbar-track-hover: transparent;
+	--overlay-bg: rgba(0, 0, 0, 0.5);
+
+}
+
+

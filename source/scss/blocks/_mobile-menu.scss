@@ -1,0 +1,50 @@
+.menu-drawer {
+	@include tablet {
+		position: fixed;
+		height: calc(100% - var(--header-height));
+		bottom: 0;
+		left: 0;
+		display: grid;
+		grid-template-rows: 1fr auto;
+		gap: 50px;
+		padding: 30px 15px;
+		max-width: 320px;
+		width: 100%;
+		background-color: rgba(var(--bg-e),1.0);
+		transform: translateX(-100%);
+		transition: transform .4s ease-out , opacity .4s ease-out;
+		opacity: 0;
+		overflow-y: auto;
+		z-index: -1;
+
+		&.active {
+			opacity: 1;
+			transform: translateX(0%);
+		}
+
+		.main-nav {
+			display: flex;
+			align-items: center;
+
+			&__list {
+				align-items: flex-start;
+				flex-direction: column;
+				align-items: center;
+			}
+
+			a {
+				@include tablet {
+					font-size: 20px;
+				}
+			}
+		}
+	}
+}
+
+.burger {
+	@include burger;
+
+	@include for-tablet {
+		display: none;
+	}
+}
