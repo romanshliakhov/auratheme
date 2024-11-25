@@ -3000,12 +3000,6 @@ fieldset {
   color: rgba(var(--cl-b), 1);
 }
 
-.header {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 100;
-}
 .header__inner {
   padding: 16px 30px;
   display: -webkit-box;
@@ -3102,7 +3096,6 @@ fieldset {
 
 .footer {
   padding: 45px 0 70px;
-  background-color: rgba(var(--cl-b), 1);
 }
 .footer__inner {
   display: -webkit-box;
