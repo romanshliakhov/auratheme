@@ -1,0 +1,15 @@
+.main-nav {
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  a {
+    font-size: 16px;
+    line-height: 100%;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: color .3s;
+  }
+}

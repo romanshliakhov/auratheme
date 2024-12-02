@@ -1,58 +1,47 @@
 import Swiper from 'swiper';
 import vars from "../_vars";
-import { Pagination, Navigation } from 'swiper/modules';
+import { Navigation, Pagination, EffectCards, Autoplay, EffectFade } from "swiper/modules";
 
-const { aboutSlider, feedbacksSlider } = vars;
+document.addEventListener("DOMContentLoaded", function () {
+  const { bannerSlider, singleSlider } = vars;
 
-if ( aboutSlider ) {
-  const swiper = new Swiper(aboutSlider, {
-    modules: [Pagination, Navigation],
-    spaceBetween: 20,
-    observer: true,
-    observeParents: true,
-    loop: true,
-    pagination: {
-      el: ".about__slider-pagination",
-      clickable: true,
-    },
-    breakpoints: {
-      320: {
-        slidesPerView: 1,
+  if (bannerSlider) {
+    const bannerSwiper = new Swiper(bannerSlider.querySelector(".swiper-container"), {
+      modules: [Pagination, EffectFade, Autoplay],
+      spaceBetween: 20,
+      speed: 1200,
+      slidesPerView: 1,
+      watchOverflow: true,
+      observer: true,
+      observeParents: true,
+      loop: true,
+      effect: "fade",
+      fadeEffect: {
+        crossFade: true,
       },
-      1025: {
-        slidesPerView: 2,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
       },
-    },
-  });
-}
 
+      pagination: {
+        el: bannerSlider.querySelector(".swiper-pagination"),
+        clickable: true,
+      }
+    });
+  }
 
-
-if (feedbacksSlider) {
-  const swiper = new Swiper(feedbacksSlider, {
-    modules: [Pagination, Navigation],
-    spaceBetween: 20,
-    observer: true,
-    observeParents: true,
-    loop: true,
-    navigation: {
-      nextEl: '.feedbacks__slider-next',
-      prevEl: '.feedbacks__slider-prev',
-    },
-    pagination: {
-      el: ".feedbacks__slider-pagination",
-      clickable: true,
-    },
-    breakpoints: {
-      320: {
-        slidesPerView: 1,
-      },
-      1025: {
-        slidesPerView: 2,
-      },
-    },
-  });
-}
+  if (singleSlider ) {
+    const singleSwiper = new Swiper(singleSlider .querySelector(".swiper-container"), {
+      spaceBetween: 23,
+      slidesPerView: 4,
+      watchOverflow: true,
+      observer: true,
+      observeParents: true,
+      loop: true,
+    });
+  }
+});
 
 
 

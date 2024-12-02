@@ -1,0 +1,40 @@
+.advantages-section {
+    margin-bottom: 65px;
+
+    &__wrapp {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    &__lists {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px 5px;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+
+        &-image {
+            display: flex;
+
+            img {
+                height: 284px;
+                border-radius: 15px;
+            }
+        }
+
+        &-title {
+            padding: 0 30px;
+            font-size: 16px;
+            line-height: 150%;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-align: center;
+        }
+    }
+}

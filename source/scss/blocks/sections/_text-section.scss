@@ -1,0 +1,22 @@
+.text-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+
+    &__content {
+        font-size: 18px;
+        line-height: 167%;
+    }
+
+    &__trigger {
+        width: 100%;
+        padding: 5px 0;
+        background-color: rgba(var(--bg-d),1.0);
+        text-align: center;
+        font-size: 18px;
+        line-height: 167%;
+        font-weight: 700;
+        cursor: pointer;
+    }
+}

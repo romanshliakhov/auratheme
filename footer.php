@@ -1,87 +1,117 @@
 <?php
 $build_folder = get_template_directory_uri() . '/assets/';
-$form_shortcode = '[contact-form-7 id="11de863" title="Contact form"]' ;
-$policy = get_field( 'policy', 'options' );
-$email = get_field( 'email',  'options' );
-$telegram = get_field( 'telegram',  'options' );
-$inst = get_field( 'inst',  'options' );
+$logo = get_field( 'logo', 'options' );
+
+// $email = get_field( 'email',  'options' );
+// $telegram = get_field( 'telegram',  'options' );
+// $inst = get_field( 'inst',  'options' );
 ?>
 
 </main>
 
-<footer class="footer" id="footer">
+<footer class="footer">
+    <div class="footer__divider">
+        <img width='1920' height='10' src='<?php echo $build_folder?>img/line.svg'>
+    </div>
+
     <div class="container">
-        <div class="footer__inner">
-            <?php if ( $form_shortcode ) : ?>
-                <div class="footer__contacts" data-aos="fade-up" data-aos-duration="750">
-                    <?php echo do_shortcode($form_shortcode); ?>
+        <div class="footer__wrapp">
+            <div class="footer__top">
+                <?php if ( $logo ) : ?>
+                    <a href="<?php echo home_url(); ?>" class="logo">
+                        <img src="<?php echo esc_url( $logo['url'] ); ?>"
+                                alt="<?php echo esc_attr( $logo['alt'] ); ?>" />
+                    </a>
+                <?php endif; ?>
+
+                <p class="footer__top-text">Пам'ять, втілена в камені</p>
+            </div>
+
+            <div class="footer__box">
+                <div class="footer__box-column">
+                    <span class="footer__heading">аДРЕСА</span>
+
+
                 </div>
-            <?php endif; ?>
 
-            <div class="footer__content" data-aos="fade-up" data-aos-duration="750">
-                <ul class="footer__socials">
-                    <?php if ( $email ) : ?>
-                        <li class="footer__social">
-                            <span class="footer__social-heading">
-                                <svg width='25' height='25'>
-                                    <use href="<?php echo $build_folder?>img/sprite/sprite.svg#email"></use>
-                                </svg>
+                <div class="footer__box-column">
+                    <span class="footer__heading">НАВІГАЦІЯ</span>
 
-                                <p>Email</p>
-                            </span>
+                    <div class="footer__menu">
+                        <?php wp_nav_menu( array(
+                            'theme_location' => 'header_nav',
+                            'container' => 'nav',
+                            'container_class' => 'main-nav',
+                            'menu_class' => 'main-nav__list',
+                        ) ); ?>
+                    </div>
+                </div>
 
-                            <a class="footer__social-link" href="mailto:<?php echo $email; ?>" target="_self">
-                                <?php echo $email; ?>
-                            </a>
+                <div class="footer__box-column">
+                    <span class="footer__heading">Каталог</span>
+                    
+                    <div class="footer__menu">
+                        <?php wp_nav_menu( array(
+                            'theme_location' => 'catalog_nav',
+                            'container' => 'nav',
+                            'container_class' => 'main-nav',
+                            'menu_class' => 'main-nav__list',
+                        ) ); ?>
+                    </div>
+                </div>
+
+                <div class="footer__box-column">
+                    <span class="footer__heading">Контакти</span>
+                    
+                    <ul>
+                        <li>
+                            <a href="tel:+380961792039">+ 38 (096) 179 20 39</a>
                         </li>
-                    <?php endif; ?>
+                        <li>
+                            <a href="tel:+380961792039">+ 38 (096) 179 20 39</a>
+                        </li>
+                    </ul>
 
-                    <?php if ( $telegram ) : ?>
-                        <li class="footer__social">
-                            <span class="footer__social-heading">
-                                <svg width='25' height='25'>
+                    <a href="mailto:contact@pamyatniki-aura.com">
+                        <svg width='20' height='20'>
+                            <use href="<?php echo $build_folder?>img/sprite/sprite.svg#email"></use>
+                        </svg>
+
+                        contact@pamyatniki-aura.com
+                    </a>
+
+
+
+                    <ul class="socials">
+                        <li>
+                            <a href="#">
+                                <svg width='35' height='35'>
                                     <use href="<?php echo $build_folder?>img/sprite/sprite.svg#telegram"></use>
                                 </svg>
-
-                                <p>Telegram</p>
-                            </span>
-
-                            <a class="footer__social-link" href="https://t.me/<?php echo $telegram; ?>" target="_blank">
-                                @<?php echo $telegram; ?>
                             </a>
                         </li>
-                    <?php endif; ?>
-
-                    <?php if ( $inst ) : ?>
-                        <li class="footer__social">
-                            <span class="footer__social-heading">
-                                <svg width='25' height='25'>
+                        <li>
+                            <a href="#">
+                                <svg width='35' height='35'>
                                     <use href="<?php echo $build_folder?>img/sprite/sprite.svg#instagram"></use>
                                 </svg>
-
-                                <p>Instagram</p>
-                            </span>
-
-                            <a class="footer__social-link" href="https://www.instagram.com/<?php echo $inst; ?>" target="_self">
-                                @<?php echo $inst; ?>
                             </a>
                         </li>
-                    <?php endif; ?>
-                </ul>
+                        <li>
+                            <a href="#">
+                                <svg width='35' height='41'>
+                                    <use href="<?php echo $build_folder?>img/sprite/sprite.svg#viber"></use>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
 
-                <?php if ( $policy ) : ?>
-                    <div class="footer__policy"><?php echo $policy ?></div>
-                <?php endif; ?>
+                    <button class="btn-red">Замовити дзвінок</button>
+                </div>
             </div>
         </div>
     </div>
 </footer>
-
-<a class="scroll-top menu-link" href="#header">
-    <svg width='40' height='40'>
-        <use href="<?php echo $build_folder?>img/sprite/sprite.svg#arrow-right"></use>
-    </svg>
-</a>
 
 <div data-overlay class="overlay fixed-block"></div>
 

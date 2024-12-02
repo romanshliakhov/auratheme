@@ -1,13 +1,20 @@
 // ----------------- MAIN COMPONENTS -----------------
+@import "../components/main-components/main-nav";
+@import "../components/main-components/main-top.scss";
+@import "../components/main-components/main-form.scss";
 
-@import "../components/main-nav.scss";
-@import "../components/main-top.scss";
-@import "../components/main-form.scss";
-@import "../components/feedback.scss";
+// ----------------- COMPONENTS -----------------
+@import "../components/buttons.scss";
+@import "../components/breadcrumbs.scss";
+@import "../components/pagination.scss";
 
-// ----------------- MAIN COMPONENTS -----------------
+@import "../components/socials.scss";
+
+// ----------------- Cards -----------------
+@import "../components/cards/post-card.scss";
 
 
-
+// ----------------- Single Posts Pages -----------------
+@import "../components/single-page/single-post.scss";
 
 

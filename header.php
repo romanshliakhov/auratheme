@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" class="fixed-block">
+<html lang="ua" class="fixed-block">
+<!-- <html lang="ua" class="fixed-block"> -->
 
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">

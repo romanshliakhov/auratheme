@@ -1,0 +1,13 @@
+.main-top {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  &__title {
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    text-transform: uppercase;
+  }
+}

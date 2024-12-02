@@ -1,66 +1,73 @@
 .footer {
-    padding: 45px 0 70px;
+    position: relative;
+    padding: 45px 0 75px;
 
-    &__inner {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        gap: 30px;
+    &__divider {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 10px;
 
-        @include small-tablet {
-            flex-direction: column;
+        img {
+            width: 100%;
+            // height: 100%;
+            object-fit: cover;
         }
     }
 
-    &__contacts {
-        max-width: 690px;
-        width: 100%;
-    }
-
-    &__content {
-        max-width: 450px;
-        width: 100%;
+    &__wrapp {
         display: flex;
         flex-direction: column;
-        gap: 30px;
+        gap: 40px;
     }
 
-    &__socials {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
+    &__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-        @include small-tablet {
-            grid-template-columns: 100%;
-        }
-    }
-
-    &__social {
-        &-heading {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 18px;
-            line-height: 130%;
-            color: rgba(var(--cl-c),1.0);
-        }
-
-        &-link {
-            font-family: var(--font-family-second);
-            font-size: 18px;
+        &-text {
+            font-size: 46px;
+            line-height: 100%;
             font-weight: 500;
-            line-height: 130%;
-            color: rgba(var(--cl-a),1.0);
+            text-transform: uppercase;
+            color: rgba(var(--cl-b),1.0);
         }
     }
 
-    &__policy {
-        display: block;
-        color: rgba(var(--cl-c),1.0);
-        font-family: var(--font-family-montserrat);
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 130%;
+    &__heading {
+        font-size: 16px;
+        line-height: 187%;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: rgba(var(--cl-b),1.0);
+    }
+
+    &__box {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+
+        &-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            a {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+    }
+
+    &__menu {
+        ul {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+        }
     }
 }

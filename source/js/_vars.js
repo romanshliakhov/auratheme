@@ -1,26 +1,25 @@
 export default {
-  activeMode: 'active-mode',
-  activeClass: "active",
   windowEl: window,
   documentEl: document,
   htmlEl: document.documentElement,
   bodyEl: document.body,
+  activeMode: 'active-mode',
+  activeClass: "active",
+  header: document.querySelector('header'),
+  footer: document.querySelector('footer'),
 
-  header: document.querySelector("header"),
+  // Mobile menu
   burger: document.querySelectorAll('.burger'),
   mobileMenu: document.querySelector('.header__menu'),
-  mainLinks: document.querySelectorAll('header .menu-item a'),
+  overlay: document.querySelector('[data-overlay]'),
   
-  anchorLinks: document.querySelectorAll('.menu-link'),
+  // Sliders
+  bannerSlider: document.querySelector('.banner-section__slider'),
+  singleSlider: document.querySelector('.single-post__slider'),
 
+  // Forms
   formWrappers: document.querySelectorAll( '.wpcf7' ),
   formSubmitBtn: document.querySelector('.wpcf7-submit'),
-  
-  observerSections: document.querySelectorAll('section[id]'),
-  overlay: document.querySelector('[data-overlay]'),
-
-  feedbacksSlider: document.querySelector('.feedbacks__slider'),
-  aboutSlider: document.querySelector('.about__slider'),
 }
 
 

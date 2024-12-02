@@ -8,13 +8,13 @@
 	--frame-width: 1920;
 	--rem-function: calc(100vw / var(--frame-width));
 	--body-font-size: 16px;
-	--content-width: 1410px;
-	--container-offset: clamp(15px, 4.167vw, 80px);
+	--content-width: 1160px;
+	--container-offset: clamp(10px, 4.514vw, 65px);
 
 	--container-width: calc(var(--content-width) + (var(--container-offset) * 2));
 
 	@include tablet {
-		--header-height: 81px !important;
+		--header-height: 81px;
 	}
 
 	--overlay-bg: rgba(0, 0, 0, 0.5);
@@ -22,26 +22,28 @@
 	// --------------- default slect variable ---------------
 	--select-inner-bg: #404040;
 	--select-inner-border: #FDFDFD;
-	--select-focus-border: #FDFDFD;
 
 	// --------------- default font-family variable ---------------
-	--font-family-primary: "Raleway", sans-serif; // var(--font-family-primary);
-	--font-family-second: "MPLUS1p", sans-serif; // var(--font-family-second);
+	--font-main: "Montserrat", sans-serif; // var(--font-main);
+	--font-second: "Inter", sans-serif; // var(--font-second);
+	--font-alternate: "Montserrat Alternates", sans-serif; // var(--font-alternate);
 
-	// --------------- default color variable ---------------
+	// --------------- text color variables  variable ---------------
 	--cl-a: #{HexToRGB(#ffffff)}; // rgba(var(--cl-a),1.0);
-	--cl-b: #{HexToRGB(#060606)}; // rgba(var(--cl-b),1.0);
-	--cl-c: #{HexToRGB(#bcbcbc)}; // rgba(var(--cl-c),1.0);
-	--cl-d: #{HexToRGB(#60615f)}; // rgba(var(--cl-d),1.0);
-	--cl-e: #{HexToRGB(#cb1f33)}; // rgba(var(--cl-e),1.0);
-	--cl-f: #{HexToRGB(#045144)}; // rgba(var(--cl-f),1.0);
+	--cl-b: #{HexToRGB(#000000)}; // rgba(var(--cl-b),1.0);
+	--cl-c: #{HexToRGB(#881717)}; // rgba(var(--cl-c),1.0);
 
-	// -------------
-	--animation-offset: 10%;
+	// --------------- background color variables  variable ---------------
+	--bg-a: #{HexToRGB(#ffffff)}; // rgba(var(--bg-a),1.0);
+	--bg-b: #{HexToRGB(#000000)}; // rgba(var(--bg-b),1.0);
+	--bg-c: #{HexToRGB(#881717)}; // rgba(var(--bg-c),1.0);
+	--bg-d: #{HexToRGB(#D9D9D9)}; // rgba(var(--bg-d),1.0);
 
-	@include small-tablet {
-		--animation-offset: 2%;
-	}
+	// --------------- border color variables  variable ---------------
+	--br-a: #{HexToRGB(#ffffff)}; // rgba(var(--br-a),1.0);
+	--br-b: #{HexToRGB(#000000)}; // rgba(var(--br-b),1.0);
+	--br-c: #{HexToRGB(#881717)}; // rgba(var(--br-c),1.0);
+
 
 	// --------------- default scroll variable ---------------
 	--scrollbar-thumb: #fff;

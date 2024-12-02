@@ -2,7 +2,7 @@ html {
   box-sizing: border-box;
   width: 100%;
   max-width: 100dvw;
-  font-size: var(--rem-function);
+  height: 100%;
 }
 
 body {
@@ -10,20 +10,21 @@ body {
   width: 100%;
   min-height: -webkit-fill-available;
   margin: 0;
+  display: flex;
+  flex-direction: column;
 
-  font-family: var(--font-family-primary);
-  font-size: clamp(16px, 2.148vw, 22px);
+  font-family: var(--font-main);
+  font-size: 16px;
   line-height: 130%;
   font-weight: 400;
-  color: rgba(var(--cl-b),1.0);
 }
 
 main {
   min-width: 0 !important;
-
-  &.no-padding {
-    padding: 0;
-  }
+  width: 100%;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 *,
@@ -90,7 +91,8 @@ picture {
 }
 
 svg {
-  fill: transparent;
+  // fill: transparent;
+  fill: currentColor;
 }
 
 label {
@@ -137,31 +139,35 @@ fieldset {
 }
 
 .container {
-  position: relative;
-  height: 100%;
+  // position: relative;
+  // height: 100%;
   width: 100%;
   max-width: var(--container-width);
   margin: 0 auto;
   padding: 0 var(--container-offset);
-}
 
-.panel,
-[data-content] {
-  z-index: 20;
-
-  max-height: 0;
-  overflow: hidden;
-
-  transition: max-height 0.2s;
-}
-
-[data-tab-content] {
-  display: none;
-
-  &.active {
-    display: block;
+  &--max {
+    max-width: 100%;
   }
 }
+
+// .panel,
+// [data-content] {
+//   z-index: 20;
+
+//   max-height: 0;
+//   overflow: hidden;
+
+//   transition: max-height 0.2s;
+// }
+
+// [data-tab-content] {
+//   display: none;
+
+//   &.active {
+//     display: block;
+//   }
+// }
 
 .dis-scroll {
   position: fixed;
@@ -183,28 +189,5 @@ fieldset {
 [data-btn-modal] {
   svg {
     pointer-events: none;
-  }
-}
-
-
-.scroll-top {
-  position: fixed;
-  bottom: clamp(20px, 5.208vw, 30px);
-  right: clamp(20px, 5.208vw, 30px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: scale(1.05);
-  }
-
-  svg {
-    transform: rotate(-90deg);
   }
 }

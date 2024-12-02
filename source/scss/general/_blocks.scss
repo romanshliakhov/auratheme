@@ -1,11 +1,19 @@
 @import "../blocks/header.scss";
 @import "../blocks/footer.scss";
 
-// Main page
-@import "../blocks/hero.scss";
-@import "../blocks/about.scss";
-@import "../blocks/projects.scss";
-@import "../blocks/feedbacks.scss";
+// Sections
+@import "../blocks/sections/banner-section.scss";
+@import "../blocks/sections/services-section.scss";
+@import "../blocks/sections/advantages-section.scss";
+@import "../blocks/sections/stones-section.scss";
+@import "../blocks/sections/information-section.scss";
+
+
+@import "../blocks/sections/works-section.scss";
+@import "../blocks/sections/blog-section.scss";
+@import "../blocks/sections/text-section.scss";
+// Posts
+@import "../blocks/post.scss";
 
 // Extra
 @import "../blocks/mobile-menu.scss";

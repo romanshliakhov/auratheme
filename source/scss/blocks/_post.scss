@@ -1,0 +1,48 @@
+.post {
+    margin-bottom: 70px;
+
+    &__wrapp {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    &__title {
+        font-size: 32px;
+        line-height: 150%;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        text-transform: capitalize;
+    }
+
+    &__items {
+        &.blog {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+
+            .post-card {
+                align-items: stretch;
+                flex-direction: row;
+                gap: 45px;
+
+                &__thumbnail {
+                    max-width: 448px;
+                    flex-shrink: 0;
+                }
+            }
+    
+            li:nth-child(even) {
+                .post-card {
+                    flex-direction: row-reverse;
+                }
+            }
+        }
+
+        &.services {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px 20px;
+        }
+    }
+}

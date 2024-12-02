@@ -1,0 +1,102 @@
+.banner-section {
+    position: relative;
+    // height: calc(100svh - var(--header-height) - 65px);
+    // height: 1500px;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-bottom: 45px;
+    // margin-bottom: 65px;
+
+    // .container {
+    //     height: 100%;
+    // }
+
+    &__slider {
+        position: relative;
+        height: 100%;
+    }
+
+    &__slide {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        &-image {
+            position: relative;
+            display: flex;
+            height: 100%;
+
+            picture, 
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 15px;
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background-color: rgba(0, 0, 0, 0.4);
+                border-radius: 15px;
+            }
+        }
+
+        &-title {
+            max-width: 620px;
+            bottom: 135px;
+            position: absolute;
+            font-family: var(--font-alternate);
+            font-size: 64px;
+            line-height: 121%;
+            font-weight: 800;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: rgba(var(--cl-a),1.0);
+            z-index: 100;
+        }
+    }
+    
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .swiper-slide {
+        transition: opacity 2s ease-in-out;
+    }
+
+    .swiper-pagination{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        gap: clamp(5px, 1.4535vw, 25px);
+        align-items: center;
+      
+        &-bullet{
+          display: flex;
+          width: clamp(15px, 1.4535vw, 25px);
+          height: clamp(15px, 1.4535vw, 25px);
+          border-radius: 50%;
+          background-color: var(--bg-h);
+          transition: all .3s;
+      
+          &-active{
+            background-color: var(--bg-a);
+          }
+        }
+    }
+
+    &__text {
+        font-family: var(--font-family-second);
+        color: rgba(var(--cl-a),1.0);
+
+        h1 {
+            font-size: clamp(50px, 7.813vw, 80px);
+            line-height: 105%;
+            font-weight: 500;
+        }
+    }
+}
+

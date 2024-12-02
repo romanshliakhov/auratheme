@@ -7,6 +7,15 @@ if ( ! defined( '_S_VERSION' ) ) {
 function connect__assets() {
 	wp_enqueue_style( 'main_style', get_stylesheet_directory_uri() . '/assets/css/style.css', array(), _S_VERSION );
 	wp_enqueue_script( 'main_script', get_template_directory_uri() . '/assets/js/main.js', array(), _S_VERSION, true );
+
+	wp_localize_script(
+		'main_script', 'ajax_params',
+		
+		array(
+		 'ajax_url' => admin_url( 'admin-ajax.php' ),
+		 'themeUrl' => get_template_directory_uri(),
+		)
+	);
 }
 
 add_action( 'wp_enqueue_scripts', 'connect__assets' );
@@ -22,59 +31,53 @@ function register_my_menus() {
 	register_nav_menus(
 		array(
 			'header_nav'   => __( 'Header Menu' ),
+			'catalog_nav'   => __( 'Catalog Menu' ),
 		)
 	);
 }
 
 add_action( 'after_setup_theme', 'register_my_menus' );
 
-
-// function disable_plugin_updates( $value ) {
-// 	if ( isset( $value ) && is_object( $value ) ) {
-// 		if ( isset( $value->response ) && is_array( $value->response ) ) {
-// 			foreach ( $value->response as $plugin => $data ) {
-// 				unset( $value->response[ $plugin ] );
-// 			}
-// 		}
-// 	}
-
-// 	return $value;
-// }
-
-// add_filter( 'site_transient_update_plugins', 'disable_plugin_updates' );
-
-function remove_head_scripts() {
-	remove_action( 'wp_head', 'wp_print_scripts' );
-	remove_action( 'wp_head', 'wp_print_head_scripts', 9 );
-	remove_action( 'wp_head', 'wp_enqueue_scripts', 1 );
-	remove_action( 'wp_head', 'wp_print_styles', 99 );
-	remove_action( 'wp_head', 'wp_enqueue_style', 99 );
-
-	add_action( 'wp_footer', 'wp_print_scripts', 5 );
-	add_action( 'wp_footer', 'wp_enqueue_scripts', 5 );
-	add_action( 'wp_footer', 'wp_print_head_scripts', 5 );
-	add_action( 'wp_head', 'wp_print_styles', 30 );
-	add_action( 'wp_head', 'wp_enqueue_style', 30 );
-
-	wp_dequeue_style( 'wp-block-library' );
-	wp_dequeue_style( 'global-styles' );
-	wp_dequeue_style( 'classic-theme-styles' );
-
-	wp_deregister_style( 'classic-theme-styles' );
-}
-
-add_action( 'wp_enqueue_scripts', 'remove_head_scripts' );
-
-
 // options ACF
 if ( function_exists( 'acf_add_options_sub_page' ) ) {
 	acf_add_options_sub_page();
 }
 
-//  helpers
-load_template( get_template_directory() . '/helpers/contactFormHooks.php', true );
-load_template( get_template_directory() . '/components/main_top.php', true );
-load_template( get_template_directory() . '/helpers/acf_auto_fields.php', true );
+// Gallery ACF
+if ( function_exists( 'acf_add_options_page' ) ) {
+	acf_add_options_page( array(
+		'page_title' => 'Каталог 3D проектів',
+		'menu_title' => 'Каталог 3D проектів',
+		'menu_slug'  => 'acf-options-gallery-settings',
+		'capability' => 'edit_posts',
+		'redirect'   => false,
+		'post_id'    => 'gallery',
+	) );
+}
+
+$theme_dir = get_template_directory();
+
+$helpers = array(
+	'/helpers/default_reset.php',
+	'/helpers/allow_svg_upload.php',
+	'/helpers/contact_form_hooks.php',
+	'/helpers/acf_auto_fields.php',
+
+	'/components/main_top.php',
+	'/components/global/breadcrumbs.php',
+	// '/components/global/pagination.php',
+	'/components/global/display_sprite.php',
+
+	
+	'/custom_posts/post_type.php',
+
+	'/custom_posts/catalog_post_type.php',
+	'/custom_posts/products_post_type.php',
+);
+   
+foreach ( $helpers as $helper ) {
+	require_once $theme_dir . $helper;
+}
 
 // admin 
 function theme_admin_assets() {
@@ -101,3 +104,16 @@ function add_custom_menu_link_class($atts, $item, $args) {
 }
 
 add_filter('nav_menu_link_attributes', 'add_custom_menu_link_class', 10, 3);
+
+function show_template() {
+	global $template;
+	echo '<div> Template used: ' . basename( $template ) . ' </div>';
+}
+   
+add_action( 'after_setup_theme', 'theme_setup' );
+add_action('wp_head', 'show_template');
+
+
+
+
+

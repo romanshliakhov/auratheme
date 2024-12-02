@@ -8,7 +8,6 @@ const {
 	burger,
 	mobileMenu,
 	header,
-	anchorLinks,
 	activeClass} = vars;
 
 const mobileMenuHandler = function(overlay, mobileMenu, burger) {
