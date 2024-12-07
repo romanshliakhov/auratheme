@@ -62,17 +62,17 @@ $helpers = array(
 	'/helpers/allow_svg_upload.php',
 	'/helpers/contact_form_hooks.php',
 	'/helpers/acf_auto_fields.php',
+	'/helpers/remove_post_slug.php',
 
 	'/components/main_top.php',
 	'/components/global/breadcrumbs.php',
 	// '/components/global/pagination.php',
 	'/components/global/display_sprite.php',
 
-	
 	'/custom_posts/post_type.php',
+	'/custom_posts/products_type.php',
 
 	'/custom_posts/catalog_post_type.php',
-	'/custom_posts/products_post_type.php',
 );
    
 foreach ( $helpers as $helper ) {
@@ -109,9 +109,51 @@ function show_template() {
 	global $template;
 	echo '<div> Template used: ' . basename( $template ) . ' </div>';
 }
-   
+
+// Show template 
 add_action( 'after_setup_theme', 'theme_setup' );
-add_action('wp_head', 'show_template');
+add_action('wp_head', 'show_template'); 
+
+
+function enqueue_portfolio_scripts() {
+    // Подключаем ваш JS-файл (замените 'portfolio.js' на путь к вашему JS-файлу)
+    // wp_enqueue_script('portfolio-script', get_template_directory_uri() . '/assets/js/portfolio.js', array('jquery'), null, true);
+
+    // Передаём AJAX URL в ваш скрипт
+    wp_localize_script('portfolio-script', 'ajaxurl', admin_url('admin-ajax.php'));
+}
+add_action('wp_enqueue_scripts', 'enqueue_portfolio_scripts');
+
+
+// portfolio
+function load_more_gallery_images() {
+    if (!isset($_POST['offset'])) {
+        wp_send_json_error('Offset not provided');
+    }
+
+    $offset = intval($_POST['offset']);
+    $gallery = get_field('gallery', 'gallery');
+
+    if (!$gallery || $offset >= count($gallery)) {
+        wp_send_json_error('No more images to load');
+    }
+
+    $images_to_load = array_slice($gallery, $offset, 6); // Следующие 6 изображений
+    $output = '';
+
+    foreach ($images_to_load as $image) {
+        $output .= '<figure class="portfolio-section__image" data-fancybox="gallery" data-src="' . esc_url($image['url']) . '">';
+        $output .= '<img src="' . esc_url($image['sizes']['medium']) . '" alt="' . esc_attr($image['alt']) . '" />';
+        $output .= '<figcaption>' . esc_attr($image['title']) . '</figcaption>';
+        $output .= '</figure>';
+    }
+
+    wp_send_json_success($output);
+}
+add_action('wp_ajax_load_more_gallery_images', 'load_more_gallery_images');
+add_action('wp_ajax_nopriv_load_more_gallery_images', 'load_more_gallery_images');
+
+
 
 
 

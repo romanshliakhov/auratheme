@@ -1,21 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // const filters = document.getElementById("category-filters");
-    // const newsList = document.getElementById("news-list");
     const typeID = document.querySelector('[data-type]')?.getAttribute('data-type').split('|')[1] || 'blog';
     const activeCategory = document.querySelector('[data-type]')?.getAttribute('data-type').split('|')[0] || '5';
-
-    // if (filters) {
-    //     filters.addEventListener("click", function (e) {
-    //         if (e.target.classList.contains("main-nav__btn")) {
-    //             e.preventDefault();
-    //             const categoryId = e.target.getAttribute("data-category-id");
-    //             document.querySelectorAll(".main-nav__btn").forEach(btn => btn.classList.remove("active"));
-
-    //             e.target.classList.add("active");
-    //             fetchPosts(categoryId, 1, secusess);
-    //         }
-    //     });
-    // }
 
     function secusess({data}){
         const list = document.querySelector('.post__items');
@@ -70,5 +55,4 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     paginationInit()
-
 });

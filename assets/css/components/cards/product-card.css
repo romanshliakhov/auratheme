@@ -1,4 +1,5 @@
-.post {
+.product-card {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -9,13 +10,21 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
 }
-.post__title {
-  font-size: 32px;
+.product-card__image {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 271px;
+}
+.product-card__image img {
+  border-radius: 16px;
+}
+.product-card__title {
+  font-size: 16px;
   line-height: 150%;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.02em;
-  text-transform: capitalize;
 }
-/*# sourceMappingURL=post.css.map */
+/*# sourceMappingURL=product-card.css.map */

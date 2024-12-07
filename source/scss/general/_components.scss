@@ -8,13 +8,18 @@
 @import "../components/breadcrumbs.scss";
 @import "../components/pagination.scss";
 
+@import "../components/address.scss";
+@import "../components/email.scss";
+@import "../components/phones.scss";
 @import "../components/socials.scss";
 
 // ----------------- Cards -----------------
+@import "../components/cards/product-card.scss";
 @import "../components/cards/post-card.scss";
 
 
-// ----------------- Single Posts Pages -----------------
+// ----------------- Single Pages -----------------
+@import "../components/single-page/product-post.scss";
 @import "../components/single-page/single-post.scss";
 
 

@@ -1,0 +1,23 @@
+.address {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &__line {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        span {
+            font-size: 13px;
+            line-height: 100%;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 13px;
+            line-height: 100%;
+        }
+    }
+}

@@ -24,6 +24,11 @@
                         <span class="information-section__text"><?php echo $text; ?></span>
                     <?php endif; ?>
 
+                    <div class="information-section__btns">
+                        <a class="btn" href="#">Наш каталог</a>
+                        <button class="btn">Замовити дзвінок</button>
+                    </div>
+
                     <?php if ( $link ) :
                         $link_url = $link['url'];
                         $link_title = $link['title'];

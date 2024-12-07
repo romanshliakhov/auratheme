@@ -1,0 +1,28 @@
+.portfolio-section {
+    margin-bottom: 95px;
+
+    &__title {
+        margin-bottom: 35px;
+    }
+
+    &__images {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    &__image {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        figcaption {
+            font-size: 16px;
+            line-height: 150%;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-align: center;
+            word-break: break-all;
+        }
+    }
+}

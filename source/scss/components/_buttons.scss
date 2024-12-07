@@ -9,3 +9,13 @@
     text-transform: capitalize;
     color: rgba(var(--cl-a),1.0);
 }
+
+.btn {
+    width: fit-content;
+    padding: 12px 33px;
+    background-color: #616161;
+    border-radius: 16px;
+    font-size: 18px;
+    line-height: 100%;
+    font-weight: 600;
+}

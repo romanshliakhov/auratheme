@@ -7,18 +7,26 @@
         <section class="works-section">
             <div class="container">
                 <?php display_main_top_section('h2',$title ) ?>
-
-                <?php
-                    $gallery = get_field( 'gallery', 'gallery' );
-
-                    if ( $gallery ) : ?>
-                        <?php foreach( $gallery as $image ) : ?>
-                            <a href="<?php echo esc_url( $image['url'] ); ?>">
-                                <img src="<?php echo esc_url( $image['sizes']['large'] ); ?>" alt="<?php echo esc_attr( $image['alt'] ); ?>"/>
-                            </a>
-                        <?php endforeach; ?>
-                <?php endif; ?>
             </div>
+
+            <?php
+            $gallery = get_field('gallery', 'gallery');
+
+            if ($gallery) : ?>
+                <div class="works-section__slider">
+                    <div class="swiper-container">
+                        <ul class="swiper-wrapper">
+                            <?php foreach ($gallery as $image) : ?>
+                                <li class="swiper-slide">
+                                    <div class="works-section__image">
+                                        <img src="<?php echo esc_url($image['sizes']['large']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </div>
+            <?php endif; ?>
         </section>
     <?php endif; 
 ?>

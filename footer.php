@@ -1,8 +1,8 @@
 <?php
 $build_folder = get_template_directory_uri() . '/assets/';
 $logo = get_field( 'logo', 'options' );
+$email = get_field( 'email',  'options' );
 
-// $email = get_field( 'email',  'options' );
 // $telegram = get_field( 'telegram',  'options' );
 // $inst = get_field( 'inst',  'options' );
 ?>
@@ -31,7 +31,23 @@ $logo = get_field( 'logo', 'options' );
                 <div class="footer__box-column">
                     <span class="footer__heading">аДРЕСА</span>
 
+                    <?php if (have_rows('address', 'options')) : ?>
+                        <ul class="address">
+                            <?php while (have_rows('address', 'options')) : the_row(); 
+                                $address_name = get_sub_field( 'address_name' );
+                                $address_descr = get_sub_field( 'address_descr' );
+                                ?>
 
+                                <li class="address__line">
+                                    <span><?php echo $address_name ?></span>
+
+                                    <?php if ( $address_descr ) : ?>
+                                        <p><?php echo $address_descr ?></p>
+                                    <?php endif; ?>
+                                </li>
+                            <?php endwhile; ?>
+                        </ul>
+                    <?php endif; ?>
                 </div>
 
                 <div class="footer__box-column">
@@ -62,25 +78,27 @@ $logo = get_field( 'logo', 'options' );
 
                 <div class="footer__box-column">
                     <span class="footer__heading">Контакти</span>
-                    
-                    <ul>
-                        <li>
-                            <a href="tel:+380961792039">+ 38 (096) 179 20 39</a>
-                        </li>
-                        <li>
-                            <a href="tel:+380961792039">+ 38 (096) 179 20 39</a>
-                        </li>
-                    </ul>
 
-                    <a href="mailto:contact@pamyatniki-aura.com">
-                        <svg width='20' height='20'>
-                            <use href="<?php echo $build_folder?>img/sprite/sprite.svg#email"></use>
-                        </svg>
+                    <?php if (have_rows('phones', 'options')) : ?>
+                        <ul class="phones">
+                            <?php while (have_rows('phones', 'options')) : the_row(); 
+                                $phone_number = get_sub_field( 'phone_number' );
+                                ?>
 
-                        contact@pamyatniki-aura.com
-                    </a>
+                                <li class="phones__line">
+                                    <a href="tel:<?php echo $phone_number ?>"><?php echo $phone_number ?></a>
+                                </li>
+                            <?php endwhile; ?>
+                        </ul>
+                    <?php endif; ?>
 
+                    <?php if ( $email ) : ?>
+                        <a class="email" href="mailto:<?php echo $email ?>">
+                            <?php sprite(20, 20, 'email'); ?>
 
+                            <?php echo $email ?>
+                        </a>
+                    <?php endif; ?>
 
                     <ul class="socials">
                         <li>

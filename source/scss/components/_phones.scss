@@ -1,0 +1,23 @@
+.phones {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    a {
+        font-size: 16px;
+        line-height: 100%;
+        font-weight: 600;
+    }
+
+    @include for-mobile {
+        svg {
+            display: none
+        }
+    }
+
+    @include mobile {
+        svg {
+            display: flex;
+        }
+    }
+}
