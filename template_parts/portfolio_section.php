@@ -22,7 +22,9 @@
                             $initial_images = array_slice($gallery, 0, 6); // Берём первые 6 изображений
                             foreach ($initial_images as $image) : ?>
                                 <figure class="portfolio-section__image" data-fancybox="gallery" data-src="<?php echo esc_url($image['url']); ?>">
-                                    <img src="<?php echo esc_url($image['sizes']['medium']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                                    <span class="portfolio-section__img">
+                                        <img src="<?php echo esc_url($image['sizes']['medium']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                                    </span>
                                     <figcaption><?php echo esc_attr($image['title']); ?></figcaption>
                                 </figure>
                             <?php endforeach; ?>

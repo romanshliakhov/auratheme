@@ -6,9 +6,17 @@ import './components/form';
 import './components/sliders';
 import './components/mobileMenu';
 import './components/fancybox';
+import './components/modals';
 
+
+import './components/monuments';
+// import './components/products';
 import './components/post';
-import './components/products';
+
+
+
+
+
 // import './components/portfolio';
 
 

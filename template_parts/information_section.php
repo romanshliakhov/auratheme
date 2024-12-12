@@ -25,20 +25,19 @@
                     <?php endif; ?>
 
                     <div class="information-section__btns">
-                        <a class="btn" href="#">Наш каталог</a>
-                        <button class="btn">Замовити дзвінок</button>
-                    </div>
+                        <?php if ( $link ) :
+                            $link_url = $link['url'];
+                            $link_title = $link['title'];
+                            $link_target = $link['target'] ? $link['target'] : '_self';
+                            ?>
+                            <a class="information-section__btn btn" href="<?php echo esc_url( $link_url ); ?>"
+                            target="<?php echo esc_attr( $link_target ); ?>">
+                                <?php echo esc_html( $link_title ); ?>
+                            </a>
+                        <?php endif; ?>
 
-                    <?php if ( $link ) :
-                        $link_url = $link['url'];
-                        $link_title = $link['title'];
-                        $link_target = $link['target'] ? $link['target'] : '_self';
-                        ?>
-                        <a class="main-button" href="<?php echo esc_url( $link_url ); ?>"
-                        target="<?php echo esc_attr( $link_target ); ?>">
-                            <?php echo esc_html( $link_title ); ?>
-                        </a>
-                    <?php endif; ?>
+                        <button class="information-section__btn btn" data-btn-modal='contact'>Замовити дзвінок</button>
+                    </div>
                 </div>
             </div>
         </section>

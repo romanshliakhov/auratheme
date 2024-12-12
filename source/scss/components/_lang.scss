@@ -1,0 +1,23 @@
+.lang {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    span {
+        font-size: 16px;
+        line-height: 100%;
+        font-weight: 400;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+            color: rgba(var(--cl-e),1.0);
+        }
+
+        &.active {
+            font-weight: 600;
+            color: rgba(var(--cl-e),1.0);
+        }
+    }
+}

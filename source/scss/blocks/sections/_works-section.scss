@@ -3,19 +3,30 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+    overflow: hidden;
 
     &__slider {
         position: relative;
-        overflow: hidden;
     }
 
     &__image {
+        position: relative;
         display: flex;
+        justify-content: center;
         height: 623px;
-    }
 
-    .swiper-wrapper {
-        transform: translateX(-5%); /* Сдвигаем весь ряд слайдов левее */
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(var(--bg-b), 0.28);
+            border-radius: 15px;
+            z-index: 2;
+        }
+
+        img {
+            border-radius: 15px;
+        }
     }
 
     .swiper-container {
@@ -23,6 +34,29 @@
         height: 100%;
     }
 
-    
+    .swiper-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        cursor: pointer;
+        transition: all 0.3s ease;
 
+        &:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        svg {
+            color: rgba(var(--cl-a),1.0);
+            transition: 0.2s ease;
+        }
+
+        &.prev {
+            left: clamp(10px, 4.514vw, 65px);
+        }
+
+        &.next {
+            right: clamp(10px, 4.514vw, 65px);
+        }
+    }
 }

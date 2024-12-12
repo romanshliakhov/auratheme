@@ -6,6 +6,11 @@
     line-height: 100%;
     font-weight: 600;
     text-transform: lowercase;
+    transition: 0.3s ease;
+
+    &:hover {
+        color: rgba(var(--cl-e),1.0);
+    }
 
     @include for-mobile {
         svg {

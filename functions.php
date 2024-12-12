@@ -7,6 +7,7 @@ if ( ! defined( '_S_VERSION' ) ) {
 function connect__assets() {
 	wp_enqueue_style( 'main_style', get_stylesheet_directory_uri() . '/assets/css/style.css', array(), _S_VERSION );
 	wp_enqueue_script( 'main_script', get_template_directory_uri() . '/assets/js/main.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'portfolio_script', get_template_directory_uri() . '/assets/js/main.js', array(), _S_VERSION, true );
 
 	wp_localize_script(
 		'main_script', 'ajax_params',
@@ -31,6 +32,7 @@ function register_my_menus() {
 	register_nav_menus(
 		array(
 			'header_nav'   => __( 'Header Menu' ),
+			'footer_nav'   => __( 'Footer Menu' ),
 			'catalog_nav'   => __( 'Catalog Menu' ),
 		)
 	);
@@ -63,16 +65,18 @@ $helpers = array(
 	'/helpers/contact_form_hooks.php',
 	'/helpers/acf_auto_fields.php',
 	'/helpers/remove_post_slug.php',
+	// '/helpers/custom_modals.php',
 
 	'/components/main_top.php',
 	'/components/global/breadcrumbs.php',
 	// '/components/global/pagination.php',
 	'/components/global/display_sprite.php',
 
+	'/custom_posts/monuments_type.php',
+	'/custom_posts/granite_type.php',
 	'/custom_posts/post_type.php',
-	'/custom_posts/products_type.php',
 
-	'/custom_posts/catalog_post_type.php',
+	// '/custom_posts/portfolio.php',
 );
    
 foreach ( $helpers as $helper ) {
@@ -110,52 +114,112 @@ function show_template() {
 	echo '<div> Template used: ' . basename( $template ) . ' </div>';
 }
 
+
 // Show template 
-add_action( 'after_setup_theme', 'theme_setup' );
-add_action('wp_head', 'show_template'); 
+// add_action( 'after_setup_theme', 'theme_setup' );
+// add_action('wp_head', 'show_template'); 
 
 
-function enqueue_portfolio_scripts() {
-    // Подключаем ваш JS-файл (замените 'portfolio.js' на путь к вашему JS-файлу)
-    // wp_enqueue_script('portfolio-script', get_template_directory_uri() . '/assets/js/portfolio.js', array('jquery'), null, true);
+// Modals
+// function generate_modal_content($post_id) {
+//     // Получаем данные поста и ACF поля
+//     $post = get_post($post_id);
+//     $acf_fields = get_fields($post_id);
 
-    // Передаём AJAX URL в ваш скрипт
-    wp_localize_script('portfolio-script', 'ajaxurl', admin_url('admin-ajax.php'));
-}
-add_action('wp_enqueue_scripts', 'enqueue_portfolio_scripts');
+//     if (!$post || !$acf_fields) {
+//         return '<div class="popup__content">Модальное окно не найдено.</div>'; // Возвращаем сообщение, если пост или данные не найдены
+//     }
 
+//     $modal_type = $acf_fields['modal_type'] ?? '';
+//     $default_content = $acf_fields['default_content'] ?? '';
+//     $default_image = $acf_fields['default_image'] ?? array('url' => '', 'alt' => 'Default Image');
 
-// portfolio
-function load_more_gallery_images() {
-    if (!isset($_POST['offset'])) {
-        wp_send_json_error('Offset not provided');
-    }
+//     // Генерация стандартного контента модалки, если тип модалки не указан
+//     if (!$modal_type) {
+//         $defaultImageSrc = $default_image['url'];
+//         $defaultImageAlt = $default_image['alt'];
 
-    $offset = intval($_POST['offset']);
-    $gallery = get_field('gallery', 'gallery');
+//         $markup = '
+//             <div class="popup__content max-w-[560px]">
+//                 <div class="w-full h-fit bg-white">
+//                     <div><img class="w-full object-cover" src="' . esc_url($defaultImageSrc) . '" alt="' . esc_attr($defaultImageAlt) . '" /></div>
+//                     <div class="flex px-5 pb-[30px] md:px-[50px] md:pb-10 flex-col gap-7 xl:gap-10">
+//                         <div class="w-[100px] h-1 bg-mainYellow"></div>
+//                         <div class="flex flex-col gap-5 editor">
+//                             <div class="flex flex-col gap-2">' . $default_content . '</div>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>';
+//     } else {
+//         // Генерация кастомного контента для модалки
+//         $custom_modal = $acf_fields['custom_modal'] ?? array();
+//         $markupInner = '';
 
-    if (!$gallery || $offset >= count($gallery)) {
-        wp_send_json_error('No more images to load');
-    }
+//         foreach ($custom_modal as $item) {
+//             $show_heading = $item['show_heading'] ?? false;
+//             $heading = $item['heading'] ?? '';
+//             $title = $item['title'] ?? '';
+//             $content = $item['content'] ?? '';
+//             $desktop_image_box = $item['desktop_image_box'] ?? array('url' => '', 'alt' => 'Desktop Image');
+//             $right_content = $item['right_content'] ?? '';
+//             $add_decor = $item['add_decor'] ?? false; // Дополнительное условие для декора
+        
+//             // Разметка заголовков и контента
+//             $headingMarkup = ($show_heading && $heading) ? '<span class="text-mainYellow font-bold text-sm uppercase">' . $heading . '</span>' : '';
+//             $titleMarkup = $title ? '<h4 class="title-mini">' . $title . '</h4>' : '';
+//             $contentMarkup = $content ? '<div class="editor">' . $content . '</div>' : '';
+//             $desktopImageSrc = $desktop_image_box['url'];
+//             $desktopImageAlt = $desktop_image_box['alt'];
+//             $rightContentMarkup = $right_content ? '<div class="example-item__content editor">' . $right_content . '</div>' : '';
+        
+//             // Добавление класса example-item--decor, если условие выполнено
+//             $decorClass = $add_decor ? ' example-item--decor' : '';
+        
+//             $markupInner .= '
+//                 <div class="popup-examples-item grid md:grid-cols-2 gap-[30px] xl:gap-10">
+//                     <div class="flex flex-col w-full gap-[25px]">
+//                         ' . $headingMarkup . '
+//                         <div class="flex flex-col w-full gap-[25px]">
+//                             ' . $titleMarkup . '
+//                             ' . $contentMarkup . '
+//                         </div>
+//                     </div>
+//                     <div class="example-item h-fit' . $decorClass . '">
+//                         <div><img class="w-full object-cover" src="' . esc_url($desktopImageSrc) . '" alt="' . esc_attr($desktopImageAlt) . '" /></div>
+//                         ' . $rightContentMarkup . '
+//                     </div>
+//                 </div>';
+//         }
+        
 
-    $images_to_load = array_slice($gallery, $offset, 6); // Следующие 6 изображений
-    $output = '';
+//         $markup = '
+//             <div class="popup__content max-w-[1200px]">
+//                 <div class="white-block flex flex-col gap-[60px] xl:gap-[100px]">
+//                     ' . $markupInner . '
+//                 </div>
+//             </div>';
+//     }
 
-    foreach ($images_to_load as $image) {
-        $output .= '<figure class="portfolio-section__image" data-fancybox="gallery" data-src="' . esc_url($image['url']) . '">';
-        $output .= '<img src="' . esc_url($image['sizes']['medium']) . '" alt="' . esc_attr($image['alt']) . '" />';
-        $output .= '<figcaption>' . esc_attr($image['title']) . '</figcaption>';
-        $output .= '</figure>';
-    }
+//     return $markup;
+// }
 
-    wp_send_json_success($output);
-}
-add_action('wp_ajax_load_more_gallery_images', 'load_more_gallery_images');
-add_action('wp_ajax_nopriv_load_more_gallery_images', 'load_more_gallery_images');
+// function get_modal_content() {
+//     if (isset($_POST['post_id'])) {
+//         $post_id = intval($_POST['post_id']);
 
+//         if ($post_id) {
+//             $modal_content = generate_modal_content($post_id);
+//             wp_send_json_success(array('content' => $modal_content));
+//         } else {
+//             wp_send_json_error('Некорректный ID поста.');
+//         }
+//     } else {
+//         wp_send_json_error('ID поста не передан.');
+//     }
+// }
 
+// add_action('wp_ajax_get_modal_content', 'get_modal_content');
+// add_action('wp_ajax_nopriv_get_modal_content', 'get_modal_content');
 
-
-
-
-
+// ?>

@@ -56,4 +56,12 @@
         align-items: center;
         gap: 25px;
     }
+
+    &__btn {
+        background-color: rgba(var(--bg-f),1.0);
+
+        &:hover {
+            background-color: rgba(var(--bg-d),1.0);
+        }
+    }
 }

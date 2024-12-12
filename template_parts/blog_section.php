@@ -22,7 +22,7 @@
                                     ?>
 
                                     <li class="blog-section__post">
-                                        <a class="blog-section__post-item" href="<?php the_permalink() ?>">
+                                        <a class="blog-section__post-link" href="<?php the_permalink() ?>">
                                             <span class="blog-section__post-image">
                                                 <img width="544" height="544" src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($alt); ?>" />
                                             </span>

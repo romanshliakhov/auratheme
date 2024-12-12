@@ -18,7 +18,7 @@ $email = get_field( 'email',  'options' );
         <div class="footer__wrapp">
             <div class="footer__top">
                 <?php if ( $logo ) : ?>
-                    <a href="<?php echo home_url(); ?>" class="logo">
+                    <a href="<?php echo home_url(); ?>" class="footer__logo">
                         <img src="<?php echo esc_url( $logo['url'] ); ?>"
                                 alt="<?php echo esc_attr( $logo['alt'] ); ?>" />
                     </a>
@@ -55,11 +55,11 @@ $email = get_field( 'email',  'options' );
 
                     <div class="footer__menu">
                         <?php wp_nav_menu( array(
-                            'theme_location' => 'header_nav',
+                            'theme_location' => 'footer_nav',
                             'container' => 'nav',
-                            'container_class' => 'main-nav',
-                            'menu_class' => 'main-nav__list',
-                        ) ); ?>
+                            'container_class' => 'footer__nav',
+                            'menu_class' => 'footer__nav-list',
+                        ) ); ?> 
                     </div>
                 </div>
 
@@ -131,9 +131,8 @@ $email = get_field( 'email',  'options' );
     </div>
 </footer>
 
-<div data-overlay class="overlay fixed-block"></div>
-
 <?php
+    load_template(get_template_directory() . '/components/modals.php', true);
     wp_footer();
 ?>
 

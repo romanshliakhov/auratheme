@@ -25,6 +25,13 @@
                             <?php endforeach; ?>
                         </ul>
                     </div>
+
+                    <button class="swiper-button prev">
+                        <?php sprite(32, 54, 'arrow-left'); ?>
+                    </button>
+                    <button class="swiper-button next">
+                        <?php sprite(32, 54, 'arrow-right'); ?>
+                    </button>
                 </div>
             <?php endif; ?>
         </section>

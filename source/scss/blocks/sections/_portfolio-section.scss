@@ -7,8 +7,19 @@
 
     &__images {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
         gap: 20px;
+
+        @include for-small-tablet { 
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @include small-tablet { 
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include mobile { 
+            grid-template-columns: 1fr;
+        }
     }
 
     &__image {
@@ -23,6 +34,36 @@
             letter-spacing: -0.02em;
             text-align: center;
             word-break: break-all;
+            overflow: hidden;
+            text-overflow: -o-ellipsis-lastline;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;  
+            -webkit-line-clamp: 1;
+        }
+    }
+
+    &__img {
+        position: relative;
+        display: flex;
+        flex-grow: 1;
+        border-radius: 15px;
+
+        @include mobile { 
+            height: 400px;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(var(--bg-b), 0.4);
+            border-radius: 15px;
+        }
+
+        picture,
+        img {
+            width: 100%;
+            border-radius: 15px;
         }
     }
 }

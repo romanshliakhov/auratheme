@@ -3,6 +3,7 @@
 
 // Sections
 @import "../blocks/sections/banner-section.scss";
+@import "../blocks/sections/categories-section.scss";
 @import "../blocks/sections/services-section.scss";
 @import "../blocks/sections/advantages-section.scss";
 @import "../blocks/sections/stones-section.scss";
@@ -10,6 +11,9 @@
 @import "../blocks/sections/works-section.scss";
 @import "../blocks/sections/blog-section.scss";
 @import "../blocks/sections/text-section.scss";
+
+// Catalog
+@import "../blocks/sections/catalog-section.scss";
 
 // Granit products Page
 @import "../blocks/sections/products-section.scss";

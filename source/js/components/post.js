@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         list.innerHTML = '';
         list.innerHTML = data.posts;
 
-        const existingPagination = document.querySelector(".page-nav");
+        const existingPagination = document.querySelector(".pagination");
         if (existingPagination) {
             existingPagination.remove();
         }
@@ -17,8 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
             list.insertAdjacentHTML('afterend',data.pagination)
             paginationInit()
         }
-
-
     }
 
     function fetchPosts(categoryId, page, callback) {
@@ -39,8 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function paginationInit() {
-        if (document.querySelector(".page-nav")) {
-            document.querySelector(".page-nav").addEventListener("click", function (e) {
+        if (document.querySelector(".pagination")) {
+            document.querySelector(".pagination").addEventListener("click", function (e) {
                 e.stopPropagation();
 
                 if (e.target.hasAttribute("data-page")) {
@@ -55,4 +53,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     paginationInit()
+
 });

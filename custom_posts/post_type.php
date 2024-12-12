@@ -137,6 +137,16 @@
 
 	add_action( 'save_post', 'save_custom_tags' );
 
+
+	// Ссылки
+	add_filter('term_link', function ($url, $term, $taxonomy) {
+		if ($taxonomy === 'category') {
+			$url = str_replace('/category/', '/', $url); // Удаляем часть "/category/"
+		}
+		return $url;
+	}, 10, 3);
+	
+
 	// Ajax
 	add_action( 'wp_ajax_filter_posts', 'filter_posts' );
 	add_action( 'wp_ajax_nopriv_filter_posts', 'filter_posts' );
@@ -263,12 +273,12 @@
 		$next_disabled = $current == $total ? 'disabled' : '';
 
 		ob_start(); ?>
-        <nav class="page-nav">
+        <nav class="pagination">
             <button
-                    class="page-nav__btn prev"
+                    class="pagination__btn prev"
 				<?php echo $prev_disabled; ?>
 				<?php echo $current > 1 ? 'data-page="' . ( $current - 1 ) . '"' : ''; ?>>
-				<?php echo sprite( 9, 13, 'arrow' ); ?>
+				<?php echo sprite( 17, 12, 'arrow-pag-prev' ); ?>
             </button>
             <ul>
 				<?php for ( $i = 1; $i <= $total; $i ++ ) : ?>
@@ -282,10 +292,10 @@
 				<?php endfor; ?>
             </ul>
             <button
-                    class="page-nav__btn next"
+                    class="pagination__btn next"
 				<?php echo $next_disabled; ?>
 				<?php echo $current < $total ? 'data-page="' . ( $current + 1 ) . '"' : ''; ?>>
-				<?php echo sprite( 9, 13, 'arrow' ); ?>
+				<?php echo sprite( 17, 12, 'arrow-pag-next' ); ?>
             </button>
         </nav>
 		<?php

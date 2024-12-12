@@ -1,49 +1,74 @@
-.breadcrumbs{
-  margin-bottom: 25px;
+.breadcrumbs {
+  margin: 20px 0 40px;
   display: flex;
   align-items: center;
-  grid-gap: 8px;
+  grid-gap: 10px;
+  overflow-x: auto;
 
-  li {
-      display: flex;
-      align-items: center;
-      grid-gap: 8px;
-
-      &:not(:last-child){
-        &::before{
-          content: '';
-          order: 2;
-          display: flex;
-          background-color: var(--cl-f);
-          width: 4px;
-          aspect-ratio: 1;
-          border-radius: 100%;
-          position: relative;
-          top: 1px;
-        }
-      }
-
-      &:last-child{
-        font-weight: 400;
-        font-size: clamp(14px, 1.168vw, 16px);
-        color: var(--cl-d);
-        transition: all .3s;
-        display: inline-block;
-        line-height: 110%;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-      }
-
-      a{
-        font-weight: 400;
-        font-size: clamp(14px, 1.168vw, 16px);
-        color: var(--cl-f);
-        transition: all .3s;
-
-        &:hover{
-          color: var(--cl-d);
-        }
-      }
+  &__prev,
+  &__current {
+    font-size: 16px;
+    line-height: 150%;
+    font-weight: 500;
+    color: rgba(var(--cl-d),1.0);
+    letter-spacing: -0.02em;
+    text-transform: capitalize;
+    transition: all 0.3s ease;
+    text-wrap: nowrap;
   }
+
+  &__current {
+    pointer-events: none;
+  }
+
+  &__prev:hover {
+    color: rgba(var(--cl-b),1.0);
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  // li {
+  //     display: flex;
+  //     align-items: center;
+  //     grid-gap: 8px;
+
+  //     &:not(:last-child){
+  //       &::before{
+  //         content: '';
+  //         order: 2;
+  //         display: flex;
+  //         background-color: var(--cl-f);
+  //         width: 4px;
+  //         aspect-ratio: 1;
+  //         border-radius: 100%;
+  //         position: relative;
+  //         top: 1px;
+  //       }
+  //     }
+
+  //     &:last-child{
+  //       font-weight: 400;
+  //       font-size: clamp(14px, 1.168vw, 16px);
+  //       color: var(--cl-d);
+  //       transition: all .3s;
+  //       display: inline-block;
+  //       line-height: 110%;
+  //       text-overflow: ellipsis;
+  //       overflow: hidden;
+  //       white-space: nowrap;
+  //     }
+
+  //     a {
+  //       font-weight: 400;
+  //       font-size: clamp(14px, 1.168vw, 16px);
+  //       color: var(--cl-f);
+  //       transition: all .3s;
+
+  //       &:hover{
+  //         color: var(--cl-d);
+  //       }
+  //     }
+  // }
 }

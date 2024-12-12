@@ -23,7 +23,7 @@
                                     ?>
 
                                     <li class="services-section__post">
-                                        <a class="services-section__post-item" href="<?php the_permalink() ?>">
+                                        <a class="services-section__post-link" href="<?php the_permalink() ?>">
                                             <?php if ($tags) : ?>
                                                 <ul class="services-section__post-tags">
                                                     <?php foreach ($tags as $tag) : ?>

@@ -7,6 +7,8 @@
 @import "../components/buttons.scss";
 @import "../components/breadcrumbs.scss";
 @import "../components/pagination.scss";
+@import "../components/favorites.scss";
+@import "../components/lang.scss";
 
 @import "../components/address.scss";
 @import "../components/email.scss";
@@ -14,6 +16,8 @@
 @import "../components/socials.scss";
 
 // ----------------- Cards -----------------
+@import "../components/cards/categories-card.scss";
+@import "../components/cards/monument-card.scss";
 @import "../components/cards/product-card.scss";
 @import "../components/cards/post-card.scss";
 

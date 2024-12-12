@@ -1,16 +1,20 @@
-document.addEventListener("DOMContentLoaded", function () {
+ document.addEventListener("DOMContentLoaded", function () {
     const filters = document.getElementById("products-filters");
     const list = document.getElementById("products-list");
-    const loadingIndicator = document.getElementById("loading-indicator");
     let currentPage = 1;
     let isFetching = false;
     let maxPage = Infinity;
 
-    // Получение текущей категории из URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const initialCategorySlug = urlParams.get("category") || "";
+    if (typeof ajax_params === "undefined") {
+        console.error("AJAX parameters not found. Please check your WordPress setup.");
+        return;
+    }
 
-    // Установка активной категории при загрузке
+    // Извлекаем категорию из URL (последний сегмент)
+    const pathParts = window.location.pathname.split("/").filter(part => part !== "");
+    const initialCategorySlug = pathParts.length > 1 ? pathParts[pathParts.length - 1] : "";
+
+    // Устанавливаем активную категорию и загружаем данные
     if (initialCategorySlug) {
         document.querySelector(`[data-category-slug="${initialCategorySlug}"]`)?.classList.add("active");
         fetchPosts(initialCategorySlug, 1, loadSuccess);
@@ -40,14 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function loadSuccess({ data }) {
         list.innerHTML += data.posts;
-        maxPage = data.max_page; // Обновление максимального количества страниц
+        maxPage = data.max_page;
         isFetching = false;
-    }
-
-    function updateURL(categorySlug) {
-        const currentURL = new URL(window.location.href);
-        currentURL.searchParams.set("category", categorySlug);
-        history.pushState(null, "", currentURL.toString());
     }
 
     function fetchPosts(categorySlug, page, callback) {
@@ -69,21 +67,23 @@ document.addEventListener("DOMContentLoaded", function () {
                     callback(result);
                 } else {
                     console.error(result.data);
+                    showError("Ничего не найдено.");
                 }
             })
-            .catch(error => console.error(error));
+            .catch(error => {
+                console.error(error);
+                showError("Ошибка при загрузке данных. Попробуйте позже.");
+            });
     }
 
-    // Обработчик для бесконечного скролла
-    window.addEventListener("scroll", function () {
-        const categorySlug = document.querySelector(".products-section__category-btn.active")?.getAttribute("data-category-slug") || "";
+    function showError(message) {
+        list.innerHTML = `<p>${message}</p>`;
+        isFetching = false;
+    }
 
-        if (
-            window.innerHeight + window.scrollY >= document.body.offsetHeight - 200 && // Если почти у конца страницы
-            !isFetching // Если запрос уже не выполняется
-        ) {
-            currentPage++;
-            fetchPosts(categorySlug, currentPage, loadSuccess);
-        }
-    });
-});
+    // Обновление URL без ?category
+    function updateURL(categorySlug) {
+        const newPath = `/granite-products/${categorySlug}`;
+        history.replaceState(null, "", newPath);
+    }
+});  

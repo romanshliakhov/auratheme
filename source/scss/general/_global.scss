@@ -17,6 +17,15 @@ body {
   font-size: 16px;
   line-height: 130%;
   font-weight: 400;
+
+  &.fixed-body {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    // disable scroll
+  }
 }
 
 main {
@@ -25,6 +34,10 @@ main {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
+
+  &.no-padding {
+    padding: 0;
+  }
 }
 
 *,
@@ -139,8 +152,6 @@ fieldset {
 }
 
 .container {
-  // position: relative;
-  // height: 100%;
   width: 100%;
   max-width: var(--container-width);
   margin: 0 auto;
@@ -149,6 +160,23 @@ fieldset {
   &--max {
     max-width: 100%;
   }
+}
+
+.visually-hidden {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  border: 0;
+
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
 }
 
 // .panel,
@@ -181,13 +209,49 @@ fieldset {
   scroll-behavior: none !important;
 }
 
-
 .overlay {
   @include overlay;
 }
+
+* {
+  &::-webkit-scrollbar {
+    width: Max(8px, 8px);
+    cursor: pointer;
+
+    @include small-tablet {
+      display: none;
+    }
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-track);
+  }
+
+  &::-webkit-scrollbar-button {
+    display: none;
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
 
 [data-btn-modal] {
   svg {
     pointer-events: none;
   }
+}
+
+.fancybox__footer {
+  padding-bottom: 20px;
+}
+
+.fancybox__caption {
+  text-align: center;
 }
